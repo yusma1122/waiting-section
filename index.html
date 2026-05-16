@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemilihan Ketua POGI Cab. Kalsel 2025–2028</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lato:wght@300;400&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ============================================
+     CONFIGURATION — ubah di sini
+     ============================================ */
+        :root {
+            --pogi-green: #1a6b3a;
+            --pogi-green-mid: #22883e;
+            --pogi-green-light: #2eac52;
+            --gold: #c9a84c;
+            --gold-light: #e8c96b;
+            --white: #f0f4f0;
+            --overlay-dark: rgba(0, 0, 0, 0.52);
+
+            /* Slideshow interval (ms) */
+            --slide-duration: 6000ms;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Lato', sans-serif;
+            background: #0a1a0e;
+        }
+
+        /* ============================================
+     BACKGROUND SLIDESHOW
+     ============================================ */
+        .bg-slideshow {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .bg-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.6s ease-in-out;
+            transform: scale(1.06);
+            animation: kenburns 18s ease-in-out infinite alternate;
+        }
+
+        .bg-slide.active {
+            opacity: 1;
+        }
+
+        /* Ken Burns parallax-like motion on slides */
+        @keyframes kenburns {
+            from {
+                transform: scale(1.0) translate(0px, 0px);
+            }
+
+            to {
+                transform: scale(1.08) translate(-10px, -6px);
+            }
+        }
+
+        /* Beautiful fallback gradient backgrounds */
+        .bg-slide:nth-child(1) {
+            background-image:
+                radial-gradient(ellipse at 20% 30%, rgba(26, 107, 58, 0.6) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(34, 136, 62, 0.4) 0%, transparent 60%),
+                linear-gradient(135deg, #040f07 0%, #0d2716 40%, #0a1a0e 100%);
+        }
+
+        .bg-slide:nth-child(2) {
+            background-image:
+                radial-gradient(ellipse at 70% 20%, rgba(201, 168, 76, 0.25) 0%, transparent 55%),
+                radial-gradient(ellipse at 30% 80%, rgba(26, 107, 58, 0.5) 0%, transparent 55%),
+                linear-gradient(160deg, #060d08 0%, #0e2218 50%, #040f07 100%);
+        }
+
+        .bg-slide:nth-child(3) {
+            background-image:
+                radial-gradient(ellipse at 50% 50%, rgba(26, 107, 58, 0.45) 0%, transparent 70%),
+                linear-gradient(180deg, #030808 0%, #0b1d10 50%, #030808 100%);
+        }
+
+        /* Dark overlay */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--overlay-dark);
+            z-index: 1;
+        }
+
+        /* Subtle noise texture */
+        .overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* ============================================
+     AMBIENT LIGHT GLOW
+     ============================================ */
+        .ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .ambient::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60vw;
+            height: 60vh;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(ellipse, rgba(26, 107, 58, 0.18) 0%, transparent 70%);
+            animation: ambientPulse 5s ease-in-out infinite alternate;
+        }
+
+        @keyframes ambientPulse {
+            from {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.12);
+            }
+        }
+
+        /* Gold decorative lines */
+        .deco-line {
+            position: fixed;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .deco-line.top {
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+            opacity: 0.7;
+        }
+
+        .deco-line.bottom {
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+            opacity: 0.7;
+        }
+
+        .deco-corner {
+            position: fixed;
+            z-index: 2;
+            width: 60px;
+            height: 60px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .deco-corner.tl {
+            top: 16px;
+            left: 16px;
+            border-top: 2px solid var(--gold);
+            border-left: 2px solid var(--gold);
+        }
+
+        .deco-corner.tr {
+            top: 16px;
+            right: 16px;
+            border-top: 2px solid var(--gold);
+            border-right: 2px solid var(--gold);
+        }
+
+        .deco-corner.bl {
+            bottom: 16px;
+            left: 16px;
+            border-bottom: 2px solid var(--gold);
+            border-left: 2px solid var(--gold);
+        }
+
+        .deco-corner.br {
+            bottom: 16px;
+            right: 16px;
+            border-bottom: 2px solid var(--gold);
+            border-right: 2px solid var(--gold);
+        }
+
+        /* ============================================
+     MAIN CONTENT LAYOUT
+     ============================================ */
+        .stage {
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            padding: 40px;
+            animation: stageFadeIn 2s ease forwards;
+        }
+
+        @keyframes stageFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ============================================
+     TITLE
+     ============================================ */
+        .title-wrap {
+            text-align: center;
+            margin-bottom: 32px;
+            animation: titleReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+        }
+
+        @keyframes titleReveal {
+            from {
+                opacity: 0;
+                transform: scale(0.93) translateY(-18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .eyebrow {
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            font-size: clamp(11px, 1.2vw, 15px);
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+            opacity: 0.85;
+        }
+
+        .title-main {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: clamp(22px, 3.6vw, 54px);
+            line-height: 1.18;
+            color: var(--white);
+            text-shadow:
+                0 0 40px rgba(26, 107, 58, 0.9),
+                0 0 80px rgba(26, 107, 58, 0.4),
+                0 2px 6px rgba(0, 0, 0, 0.6);
+            letter-spacing: 0.04em;
+            animation: titleGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from {
+                text-shadow: 0 0 30px rgba(26, 107, 58, 0.8), 0 0 60px rgba(26, 107, 58, 0.3), 0 2px 6px rgba(0, 0, 0, 0.6);
+            }
+
+            to {
+                text-shadow: 0 0 50px rgba(46, 172, 82, 1.0), 0 0 100px rgba(46, 172, 82, 0.5), 0 2px 6px rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        .title-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 14px auto;
+            width: fit-content;
+        }
+
+        .title-divider span {
+            display: block;
+            height: 1px;
+            width: clamp(40px, 5vw, 80px);
+            background: linear-gradient(90deg, transparent, var(--gold));
+        }
+
+        .title-divider span:last-child {
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .title-divider .diamond {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+        }
+
+        .title-sub {
+            font-family: 'Cinzel', serif;
+            font-weight: 400;
+            font-size: clamp(14px, 1.8vw, 26px);
+            color: var(--gold-light);
+            letter-spacing: 0.12em;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        /* ============================================
+     3D BALLOT BOX — JS sets exact pixel transforms
+     ============================================ */
+        .box-float {
+            animation: floatY 4s ease-in-out infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes floatY {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-14px);
+            }
+        }
+
+        .box-scene {
+            perspective: 700px;
+            perspective-origin: 50% 38%;
+        }
+
+        .box-3d {
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spinY 16s linear infinite;
+        }
+
+        @keyframes spinY {
+            from {
+                transform: rotateX(8deg) rotateY(0deg);
+            }
+
+            to {
+                transform: rotateX(8deg) rotateY(360deg);
+            }
+        }
+
+        .face {
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .face-front,
+        .face-back {
+            background: linear-gradient(160deg, #3dbf62 0%, #1a6b3a 50%, #0d3d1e 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .face-front::before,
+        .face-back::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+            background-size: 18px 18px;
+            pointer-events: none;
+        }
+
+        .face-front::after,
+        .face-back::after {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        .face-left,
+        .face-right {
+            background: linear-gradient(160deg, #22883e 0%, #145230 50%, #0a2e18 100%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .face-top {
+            background: linear-gradient(135deg, #3dbf62 0%, #1a6b3a 60%, #0e3d1e 100%);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .face-bottom {
+            background: #071a0c;
+            border: 1px solid rgba(0, 0, 0, 0.6);
+        }
+
+        .slot {
+            width: 52%;
+            height: 7px;
+            background: #020d05;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.9), inset 0 1px 3px rgba(0, 0, 0, 1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .gold-band {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 15%;
+            height: 2px;
+            background: linear-gradient(90deg,
+                    rgba(201, 168, 76, 0.05), rgba(201, 168, 76, 0.7),
+                    rgba(232, 201, 107, 1),
+                    rgba(201, 168, 76, 0.7), rgba(201, 168, 76, 0.05));
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .shimmer {
+            position: absolute;
+            top: 0;
+            left: -80%;
+            width: 55%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.09), transparent);
+            animation: shimmerSlide 7s ease-in-out infinite;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        @keyframes shimmerSlide {
+
+            0%,
+            65%,
+            100% {
+                transform: translateX(0);
+                opacity: 0;
+            }
+
+            35% {
+                transform: translateX(300%);
+                opacity: 1;
+            }
+        }
+
+        .logo-face {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            z-index: 2;
+        }
+
+        .logo-circle {
+            width: 52px;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border: 1.5px solid rgba(201, 168, 76, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 14px rgba(201, 168, 76, 0.2), inset 0 0 8px rgba(255, 255, 255, 0.05);
+        }
+
+        .logo-svg {
+            width: 68%;
+            height: 68%;
+        }
+
+        .logo-text {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.2em;
+            color: #f0f4f0;
+            text-shadow: 0 0 8px rgba(201, 168, 76, 0.5);
+        }
+
+        .logo-subtext {
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            font-size: 7px;
+            letter-spacing: 0.22em;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        .side-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            gap: 8px;
+        }
+
+        .side-stripe {
+            width: 1.5px;
+            height: 35%;
+            background: linear-gradient(180deg, transparent, rgba(201, 168, 76, 0.4), transparent);
+        }
+
+        .side-badge {
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .side-badge svg {
+            width: 52%;
+            height: 52%;
+            fill: none;
+            stroke: rgba(232, 201, 107, 0.45);
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+
+        .box-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 130px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(ellipse, rgba(26, 107, 58, 0.38) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            animation: glowPulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            from {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        .box-shadow {
+            width: 110px;
+            height: 14px;
+            background: radial-gradient(ellipse, rgba(0, 0, 0, 0.55) 0%, transparent 70%);
+            margin-top: 6px;
+            animation: shadowPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes shadowPulse {
+
+            0%,
+            100% {
+                transform: scaleX(1);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: scaleX(0.72);
+                opacity: 0.35;
+            }
+        }
+
+        /* ============================================
+     3D BALLOT PAPER (kertas suara)
+     ============================================ */
+        .paper-3d {
+            position: absolute;
+            transform-style: preserve-3d;
+            /* positioned above the box top; will be set by JS */
+        }
+
+        .paper-face {
+            position: absolute;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .paper-front {
+            background: linear-gradient(160deg, #f9f5e8 0%, #ede8d2 60%, #d9d0b0 100%);
+            border: 1px solid rgba(180, 160, 100, 0.5);
+            box-shadow:
+                0 0 12px rgba(201, 168, 76, 0.25),
+                inset 0 0 20px rgba(220, 200, 140, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 6px 5px;
+            gap: 4px;
+        }
+
+        .paper-front::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--pogi-green), var(--gold), var(--pogi-green));
+            opacity: 0.8;
+        }
+
+        .paper-back {
+            background: linear-gradient(160deg, #e8e2cc 0%, #d5ceb0 100%);
+            border: 1px solid rgba(160, 140, 80, 0.4);
+        }
+
+        .paper-line {
+            width: 80%;
+            height: 2px;
+            background: rgba(100, 80, 30, 0.18);
+            border-radius: 1px;
+        }
+
+        .paper-line.thick {
+            width: 55%;
+            height: 3px;
+            background: rgba(26, 107, 58, 0.25);
+            margin-bottom: 2px;
+        }
+
+        .paper-check {
+            width: 12px;
+            height: 12px;
+            border: 1.5px solid rgba(26, 107, 58, 0.5);
+            border-radius: 2px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .paper-check.checked::after {
+            content: '✓';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: rgba(26, 107, 58, 0.8);
+            line-height: 1;
+            text-align: center;
+        }
+
+        .paper-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            width: 80%;
+        }
+
+        .paper-row-line {
+            flex: 1;
+            height: 1.5px;
+            background: rgba(100, 80, 30, 0.15);
+            border-radius: 1px;
+        }
+
+        /* Floating bob animation for the paper — separate from box spinY */
+        @keyframes paperBob {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .paper-wrapper {
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: paperBob 3s ease-in-out infinite;
+        }
+
+        /* ============================================
+     STATUS INDICATOR
+     ============================================ */
+        .status-wrap {
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: titleReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
+        }
+
+        .status-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 28px;
+            background: rgba(26, 107, 58, 0.18);
+            border: 1px solid rgba(26, 107, 58, 0.35);
+            border-radius: 100px;
+            backdrop-filter: blur(8px);
+        }
+
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: #4ade80;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+            animation: pulseDot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes pulseDot {
+            0% {
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+            }
+        }
+
+        .status-text {
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            font-size: clamp(13px, 1.4vw, 18px);
+            letter-spacing: 0.12em;
+            color: rgba(240, 244, 240, 0.88);
+        }
+
+        .status-dots {
+            display: inline-block;
+            letter-spacing: 0.05em;
+        }
+
+        .status-dots span {
+            animation: dotBlink 1.4s infinite;
+            opacity: 0;
+        }
+
+        .status-dots span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .status-dots span:nth-child(2) {
+            animation-delay: 0.35s;
+        }
+
+        .status-dots span:nth-child(3) {
+            animation-delay: 0.7s;
+        }
+
+        @keyframes dotBlink {
+
+            0%,
+            80%,
+            100% {
+                opacity: 0;
+            }
+
+            40% {
+                opacity: 1;
+            }
+        }
+
+        /* ============================================
+     FOOTER (optional: date/org)
+     ============================================ */
+        .footer-info {
+            position: fixed;
+            bottom: 28px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 10;
+            animation: titleReveal 1.6s cubic-bezier(0.16, 1, 0.3, 1) 1.6s both;
+        }
+
+        .footer-info p {
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            font-size: clamp(10px, 1vw, 13px);
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: rgba(201, 168, 76, 0.55);
+        }
+
+        /* ============================================
+     LOGO GLOW PARTICLES (decorative)
+     ============================================ */
+        .particles {
+            position: fixed;
+            inset: 0;
+            z-index: 3;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat linear infinite;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Slideshow -->
+    <div class="bg-slideshow" id="bgSlideshow">
+        <!-- Slides 1–3: default gradient backgrounds.
+       To use real images, add style="background-image:url('your-photo.jpg')" -->
+        <div class="bg-slide active" id="slide1"></div>
+        <div class="bg-slide" id="slide2"></div>
+        <div class="bg-slide" id="slide3"></div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+    <div class="ambient"></div>
+
+    <!-- Decorative frame -->
+    <div class="deco-line top"></div>
+    <div class="deco-line bottom"></div>
+    <div class="deco-corner tl"></div>
+    <div class="deco-corner tr"></div>
+    <div class="deco-corner bl"></div>
+    <div class="deco-corner br"></div>
+
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- MAIN STAGE -->
+    <main class="stage">
+
+        <!-- Title -->
+        <div class="title-wrap">
+            <p class="eyebrow">Ikatan Dokter Indonesia &middot; POGI Cabang Kalimantan Selatan</p>
+            <h1 class="title-main">Pemilihan Ketua POGI<br>Cab. Kalsel</h1>
+            <div class="title-divider">
+                <span></span>
+                <div class="diamond"></div>
+                <span></span>
+            </div>
+            <p class="title-sub">Periode 2025 &ndash; 2028</p> <br><br><br><br><br><br>
+        </div>
+
+        <!-- 3D Ballot Box -->
+        <div style="position:relative; display:flex; flex-direction:column; align-items:center;">
+            <div class="box-glow"></div>
+            <div class="box-float">
+                <div class="box-scene">
+                    <div class="box-3d" id="box3d">
+
+                        <!-- FRONT FACE -->
+                        <div class="face face-front">
+                            <div class="shimmer"></div>
+                            <div class="gold-band"></div>
+                            <div class="logo-face">
+                                <div class="logo-circle">
+                                    <img src="pogi.png" alt="Logo POGI" style="
+                width: 65%;
+                height: 65%;
+                object-fit: contain;
+                filter: brightness(1.2) drop-shadow(0 0 8px rgba(255,215,0,0.5));
+              ">
+                                </div>
+                                <div class="logo-text">POGI</div>
+                                <div class="logo-subtext">Cab. Kalsel</div>
+                            </div>
+                        </div>
+
+                        <!-- BACK FACE -->
+                        <div class="face face-back">
+                            <div class="logo-face">
+                                <div class="logo-circle">
+                                    <img src="pogi.png" alt="Logo POGI" style="
+    width: 65%;
+    height: 65%;
+    object-fit: contain;
+    filter: brightness(1.2) drop-shadow(0 0 8px rgba(255,215,0,0.5));
+  ">
+                                </div>
+                                <div class="logo-text">POGI</div>
+                                <div class="logo-subtext">Cab. Kalsel</div>
+                            </div>
+                        </div>
+
+                        <!-- LEFT FACE -->
+                        <div class="face face-left">
+                            <div class="side-inner">
+                                <div class="side-stripe"></div>
+                                <div class="side-badge">
+                                    <img src="pogi.png" alt="Logo POGI"
+                                        style="width: 60px; height: 60px; object-fit: contain;">
+                                </div>
+                                <div class="side-stripe"></div>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT FACE -->
+                        <div class="face face-right">
+                            <div class="side-inner">
+                                <div class="side-stripe"></div>
+                                <div class="side-badge">
+                                    <img src="pogi.png" alt="Logo POGI"
+                                        style="width: 60px; height: 60px; object-fit: contain;">
+                                </div>
+                                <div class="side-stripe"></div>
+                            </div>
+                        </div>
+
+                        <!-- TOP FACE -->
+                        <div class="face face-top">
+                            <div class="slot"></div>
+                        </div>
+
+                        <!-- 3D BALLOT PAPER (kertas suara) — child of box-3d so it spins together -->
+                        <div class="paper-wrapper" id="paperWrapper">
+                            <div class="paper-3d" id="paper3d">
+                                <!-- Paper front face -->
+                                <div class="paper-face paper-front" id="paperFront">
+                                    <div class="paper-line thick"></div>
+                                    <div class="paper-row">
+                                        <div class="paper-check checked"></div>
+                                        <div class="paper-row-line"></div>
+                                    </div>
+                                    <div class="paper-row">
+                                        <div class="paper-check"></div>
+                                        <div class="paper-row-line"></div>
+                                    </div>
+                                    <div class="paper-line"></div>
+                                    <div class="paper-line"></div>
+                                    <div class="paper-row">
+                                        <div class="paper-check"></div>
+                                        <div class="paper-row-line"></div>
+                                    </div>
+                                </div>
+                                <!-- Paper back face -->
+                                <div class="paper-face paper-back" id="paperBack"></div>
+                                <!-- Paper left edge -->
+                                <div class="paper-face" id="paperLeft"
+                                    style="background:linear-gradient(180deg,#d4ccaa,#bfb88e); border:1px solid rgba(160,140,80,0.3);">
+                                </div>
+                                <!-- Paper right edge -->
+                                <div class="paper-face" id="paperRight"
+                                    style="background:linear-gradient(180deg,#d4ccaa,#bfb88e); border:1px solid rgba(160,140,80,0.3);">
+                                </div>
+                                <!-- Paper top edge -->
+                                <div class="paper-face" id="paperTop"
+                                    style="background:linear-gradient(90deg,#e8e0c4,#cfc89c); border:1px solid rgba(160,140,80,0.3);">
+                                </div>
+                                <!-- Paper bottom edge -->
+                                <div class="paper-face" id="paperBottom"
+                                    style="background:#b8ae86; border:1px solid rgba(120,100,50,0.4);"></div>
+                            </div>
+                        </div>
+
+                        <!-- BOTTOM FACE -->
+                        <div class="face face-bottom"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="box-shadow"></div>
+        </div>
+
+        <!-- Status Indicator -->
+        <div class="status-wrap">
+            <div class="status-bar">
+                <div class="pulse-dot"></div>
+                <span class="status-text">
+                    Pemungutan suara sedang berlangsung<span
+                        class="status-dots"><span>.</span><span>.</span><span>.</span></span>
+                </span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <div class="footer-info">
+        <p>Banjarmasin &nbsp;&middot;&nbsp; 2026</p>
+    </div>
+
+    <script>
+        /* ============================================
+           SLIDESHOW
+           ============================================ */
+        const BACKGROUND_IMAGES = [
+            /* 'images/bg1.jpg', */
+            /* 'images/bg2.jpg', */
+            /* 'images/bg3.jpg', */
+        ];
+        const SLIDE_INTERVAL_MS = 6000;
+
+        (function initSlides() {
+            const slides = document.querySelectorAll('.bg-slide');
+            if (BACKGROUND_IMAGES.length > 0) {
+                BACKGROUND_IMAGES.forEach((url, i) => {
+                    if (slides[i]) slides[i].style.backgroundImage = `url('${url}')`;
+                });
+            }
+            let current = 0;
+            setInterval(() => {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, SLIDE_INTERVAL_MS);
+        })();
+
+        /* ============================================
+           3D BOX — precise pixel face positioning
+           W  = box width  (front/back face width, left/right face depth)
+           H  = box height (all vertical faces)
+           D  = box depth  = W (square footprint)
+           ============================================ */
+        (function buildBox() {
+            const W = 130; // width  (px) — smaller box
+            const H = 160; // height (px)
+            const D = 130; // depth  (px) = W for square base
+
+            const box = document.getElementById('box3d');
+            box.style.width = W + 'px';
+            box.style.height = H + 'px';
+
+            // Helper: apply size + transform to a face element
+            function setFace(selector, w, h, transform) {
+                const el = box.querySelector(selector);
+                el.style.width = w + 'px';
+                el.style.height = h + 'px';
+                el.style.transform = transform;
+                // centre the face origin at box centre
+                el.style.top = ((H - h) / 2) + 'px';
+                el.style.left = ((W - w) / 2) + 'px';
+            }
+
+            // Front  — push forward by D/2
+            setFace('.face-front',
+                W, H,
+                `translateZ(${D / 2}px)`
+            );
+
+            // Back   — rotate 180° then push forward by D/2
+            setFace('.face-back',
+                W, H,
+                `rotateY(180deg) translateZ(${D / 2}px)`
+            );
+
+            // Left   — rotate -90° then push forward by W/2
+            //          face width = D, face height = H
+            setFace('.face-left',
+                D, H,
+                `rotateY(-90deg) translateZ(${W / 2}px)`
+            );
+
+            // Right  — rotate +90° then push forward by W/2
+            setFace('.face-right',
+                D, H,
+                `rotateY(90deg) translateZ(${W / 2}px)`
+            );
+
+            // Top    — rotate X +90° then push up by H/2
+            //          face width = W, face height = D (depth becomes height of top plane)
+            const topEl = box.querySelector('.face-top');
+            topEl.style.width = W + 'px';
+            topEl.style.height = D + 'px';
+            topEl.style.top = ((H - D) / 2) + 'px';
+            topEl.style.left = '0px';
+            topEl.style.transform = `rotateX(90deg) translateZ(${H / 2}px)`;
+
+            // Bottom — rotate X -90° then push down by H/2
+            const botEl = box.querySelector('.face-bottom');
+            botEl.style.width = W + 'px';
+            botEl.style.height = D + 'px';
+            botEl.style.top = ((H - D) / 2) + 'px';
+            botEl.style.left = '0px';
+            botEl.style.transform = `rotateX(-90deg) translateZ(${H / 2}px)`;
+
+            /* ---- 3D Ballot Paper (kertas suara) ---- */
+            // Paper dimensions
+            const PW = 70;   // paper width
+            const PH = 90;   // paper height (tall)
+            const PT = 4;    // paper thickness
+
+            // We place the paper-wrapper so that the bottom of the paper
+            // sits just above the box top face (at -H/2 from box centre),
+            // with a gap of ~10px above the slot.
+            // box-3d origin is at box centre (W/2, H/2).
+            // The top face plane is at Y = -H/2 in 3D space.
+            // We want the paper bottom to sit at Y = -H/2 - 10 from box centre.
+            // Because wrapper is absolute child of box-3d, top=0 = box top edge (2D).
+            // In 3D the box top face is at translateZ(H/2) along X-rotated axis.
+            // Easier: place wrapper using 3D transform on the wrapper itself.
+
+            const wrapper = document.getElementById('paperWrapper');
+            // Place wrapper above the box top face using negative top.
+            // box-3d top = 0px in 2D layout → the box top face in 3D.
+            // Setting top = -(PH + gap) puts the paper above the box visually in 3D.
+            // DO NOT set wrapper.style.transform here — that would override the paperBob CSS animation!
+            wrapper.style.position = 'absolute';
+            wrapper.style.top = -(PH + 12) + 'px';   // 12px gap above box top
+            wrapper.style.left = ((W - PW) / 2) + 'px';
+            wrapper.style.width = PW + 'px';
+            wrapper.style.height = PH + 'px';
+
+            // Now build the paper faces inside paper-3d
+            const paper = document.getElementById('paper3d');
+            paper.style.position = 'relative';
+            paper.style.width = PW + 'px';
+            paper.style.height = PH + 'px';
+            paper.style.transformStyle = 'preserve-3d';
+
+            function setPaperFace(id, w, h, transform, top, left) {
+                const el = document.getElementById(id);
+                el.style.width = w + 'px';
+                el.style.height = h + 'px';
+                el.style.transform = transform;
+                el.style.top = (top !== undefined ? top : (PH - h) / 2) + 'px';
+                el.style.left = (left !== undefined ? left : (PW - w) / 2) + 'px';
+            }
+
+            // Front face
+            setPaperFace('paperFront', PW, PH, `translateZ(${PT / 2}px)`, 0, 0);
+            // Back face
+            setPaperFace('paperBack', PW, PH, `rotateY(180deg) translateZ(${PT / 2}px)`, 0, 0);
+            // Left edge
+            setPaperFace('paperLeft', PT, PH, `rotateY(-90deg) translateZ(${PW / 2}px)`, 0, (PW - PT) / 2);
+            // Right edge
+            setPaperFace('paperRight', PT, PH, `rotateY(90deg) translateZ(${PW / 2}px)`, 0, (PW - PT) / 2);
+            // Top edge
+            const paperTopEl = document.getElementById('paperTop');
+            paperTopEl.style.width = PW + 'px';
+            paperTopEl.style.height = PT + 'px';
+            paperTopEl.style.top = ((PH - PT) / 2) + 'px';
+            paperTopEl.style.left = '0px';
+            paperTopEl.style.transform = `rotateX(90deg) translateZ(${PH / 2}px)`;
+            // Bottom edge
+            const paperBotEl = document.getElementById('paperBottom');
+            paperBotEl.style.width = PW + 'px';
+            paperBotEl.style.height = PT + 'px';
+            paperBotEl.style.top = ((PH - PT) / 2) + 'px';
+            paperBotEl.style.left = '0px';
+            paperBotEl.style.transform = `rotateX(-90deg) translateZ(${PH / 2}px)`;
+        })();
+
+        /* ============================================
+           FLOATING PARTICLES
+           ============================================ */
+        (function initParticles() {
+            const container = document.getElementById('particles');
+            const count = 28;
+            const sheet = document.createElement('style');
+            sheet.textContent = `
+      @keyframes particleFloat {
+        0%   { transform: translateY(0) translateX(0px); opacity: 0; }
+        10%  { opacity: 0.55; }
+        90%  { opacity: 0.18; }
+        100% { transform: translateY(-100vh) translateX(40px); opacity: 0; }
+      }`;
+            document.head.appendChild(sheet);
+
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const dur = 12 + Math.random() * 20;
+                const size = Math.random() < 0.3 ? 3 : 2;
+                p.style.cssText = `
+        left: ${Math.random() * 100}%;
+        bottom: -10px;
+        width: ${size}px;
+        height: ${size}px;
+        animation: particleFloat ${dur}s linear -${Math.random() * dur}s infinite;
+        background: ${Math.random() < 0.5 ? 'rgba(201,168,76,0.7)' : 'rgba(46,172,82,0.7)'};
+        border-radius: 50%;
+        position: absolute;
+      `;
+                container.appendChild(p);
+            }
+        })();
+    </script>
+</body>
+
+</html>
